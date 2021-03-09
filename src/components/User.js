@@ -46,7 +46,7 @@ function User({ data, handleNameOnSubmit }) {
     return (
         <div>
             <div className="user">
-                <button onClick={handlePlusOnClick}>+</button>
+                <button onClick={handlePlusOnClick}>{showTodos ? '-' : '+'}</button>
                 My name is {showUserInput 
                     ? <input type="text" 
                         value={userName} 
@@ -56,7 +56,8 @@ function User({ data, handleNameOnSubmit }) {
                     : <strong onDoubleClick={handleNameDoubleClick}>{userName}</strong>
                 }, I am <strong>{data.age}</strong>
             </div>
-            {showTodos && (
+            {error && 'There is an error fetching todo list'}
+            {!error && showTodos && (
                 <div className="todos">
                     {todos.map(todo => <Todo key={todo.id} data={todo} />)}
                 </div>
