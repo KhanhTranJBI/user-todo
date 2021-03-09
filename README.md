@@ -2,10 +2,6 @@
 
 This is a single page application to show a list of users with a todo list underneath each user if clicking on the plus sign button in front of each user. The todo list item will have the checkbox which either completed or not and a title.
 
-## Todos
-
-Implement code to handle error case for fetching data from the API.
-
 ## Available Scripts
 
 In the project directory, you can run:

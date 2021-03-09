@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import './App.css';
 
@@ -27,7 +27,7 @@ function App() {
       setUsers(newUsers);
   }
 
-  async function fetchUsers() {
+  const fetchUsers = useCallback(async () =>  {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
       const users = await response.json();
@@ -43,15 +43,16 @@ function App() {
     } catch (error) {
       setError(error);
     }
-  }
+  }, []);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <div className="App">
-      {users.map(user => <User 
+      {error && 'There is an error fetch users data'}
+      {!error && users.map(user => <User 
         key={user.id} 
         data={user} 
         handleNameOnSubmit={handleNameOnSubmit} 
